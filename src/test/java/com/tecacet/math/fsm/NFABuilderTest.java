@@ -9,7 +9,7 @@ public class NFABuilderTest {
 
 	@Test
 	public void testBuild() throws FAException {
-		CharacterAlphabet alphabet = new CharacterAlphabet(new char[] { '0',
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
 				'1' });
 
 		NFABuilder<String, Character> builder = NFA.newNFA(alphabet);

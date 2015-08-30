@@ -14,7 +14,7 @@ public class DFATest {
 	@Test
 	public void test1() throws Exception {
 
-		CharacterAlphabet alphabet = new CharacterAlphabet(new char[] { '0',
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
 				'1' });
 
 		DFABuilder<String, Character> builder = DFA.newDFA(alphabet);
@@ -38,7 +38,7 @@ public class DFATest {
 	@Test
 	public void test2() throws FABuilderException, FAException {
 		DFABuilder<String, Character> builder = DFA
-				.newDFA(new CharacterAlphabet(new char[] { 'a', 'b', 'c' }));
+				.newDFA(new LowercaseAlphabet(new char[] { 'a', 'b', 'c' }));
 		builder.setInitialState("S0");
 
 		builder.addTransition("S0", "S0", 'b');
@@ -69,7 +69,7 @@ public class DFATest {
 	@Test
 	public void testBuilderException() throws FABuilderException {
 		DFABuilder<String, Character> builder = DFA
-				.newDFA(new CharacterAlphabet(new char[] { 'a', 'b', 'c' }));
+				.newDFA(new LowercaseAlphabet(new char[] { 'a', 'b', 'c' }));
 
 		try {
 			builder.build();

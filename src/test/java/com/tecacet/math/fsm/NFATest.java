@@ -16,7 +16,7 @@ public class NFATest {
 	 * Build a machine that accepts any string with 00 or 11
 	 */
 	public void test1() throws FAException {
-		CharacterAlphabet alphabet = new CharacterAlphabet(new char[] { '0',
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
 		'1' });
 		NFABuilder<String, Character> builder = NFA.newNFA(alphabet);
 		builder.setInitialState("A").

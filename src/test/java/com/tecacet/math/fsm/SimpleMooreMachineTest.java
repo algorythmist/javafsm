@@ -9,7 +9,7 @@ public class SimpleMooreMachineTest {
 	@Test
 	public void test1() throws Exception {
 
-		CharacterAlphabet alphabet = new CharacterAlphabet(new char[] { '0',
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
 				'1' });
 
 		MooreMachineBuilder<String, Character, Character> builder = SimpleMooreMachine

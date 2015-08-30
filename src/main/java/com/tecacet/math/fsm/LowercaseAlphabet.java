@@ -5,19 +5,19 @@ package com.tecacet.math.fsm;
  * symbol is represented by a character and a string (or word) by a
  * java.lang.String
  */
-public class CharacterAlphabet extends Alphabet<Character> {
+public class LowercaseAlphabet extends Alphabet<Character> {
 
 	/**
 	 * Create an alphabet with all lowercase characters
 	 */
-	public CharacterAlphabet() {
+	public LowercaseAlphabet() {
 		super();
 		for (char c = 'a'; c <= 'z'; c++) {
 			symbols.add(c);
 		}
 	}
 
-	public CharacterAlphabet(char[] symbols) {
+	public LowercaseAlphabet(char[] symbols) {
 		super();
 		for (char c : symbols) {
 			this.symbols.add(c);
@@ -41,6 +41,7 @@ public class CharacterAlphabet extends Alphabet<Character> {
 		return array;
 	}
 
+	@Override
 	public String toString() {
 		return new String(getSymbols());
 	}

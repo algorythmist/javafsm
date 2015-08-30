@@ -8,7 +8,7 @@ public class DFABuilderTest {
 
 	@Test
 	public void testBuild() throws FAException {
-		CharacterAlphabet alphabet = new CharacterAlphabet(new char[] { '0',
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
 				'1' });
 
 		DFABuilder<String, Character> builder = DFA.newDFA(alphabet);
