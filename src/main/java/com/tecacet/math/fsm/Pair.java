@@ -1,5 +1,6 @@
 package com.tecacet.math.fsm;
 
+
 /* A State-symbol pair identifies a unique transition */
 class Pair<S,C> {
 	S state;
@@ -17,9 +18,7 @@ class Pair<S,C> {
 	}
 
 	public int hashCode() {
-		// TODO better hash code
-		return (state.hashCode() + (31 ^ state.toString().length())
-				* hashCode(symbol));
+		return (17 * state.hashCode() + 17 * hashCode(symbol));
 	}
 
 	private boolean equals(C symbol1, C symbol2) {
