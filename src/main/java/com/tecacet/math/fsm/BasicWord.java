@@ -33,18 +33,7 @@ public class BasicWord<C> implements Word<C> {
 	public int length() {
 		return symbols.size();
 	}
-
-	@Override
-	public Word<C> substring(int start, int end) {
-		List<C> subList = symbols.subList(start, end);
-		return new BasicWord<C>(subList);
-	}
-
-	@Override
-	public Word<C> substring(int start) {
-		return substring(start, symbols.size());
-	}
-
+	
 	@Override
 	public List<C> asList() {
 		return symbols;

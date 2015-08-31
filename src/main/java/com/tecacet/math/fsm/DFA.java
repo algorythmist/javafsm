@@ -79,12 +79,12 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	@Override
 	public S getNextState(S from, Word<C> word)
 			throws InvalidTransitionException {
-		return delta_bar(from, word);
+		return delta_bar(from, word,0);
 	}
 
 	@Override
 	public boolean accepts(Word<C> word) throws InvalidTransitionException {
-		return isFinal(delta_bar(initialState, word));
+		return isFinal(delta_bar(initialState, word,0));
 	}
 
 	@Override
@@ -104,14 +104,14 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		return transitionTable.getNextState(from, symbol);
 	}
 
-	private S delta_bar(S from, Word<C> word) throws InvalidTransitionException {
-		if (word.length() == 0) {
+	private S delta_bar(S from, Word<C> word, int index) throws InvalidTransitionException {
+		if (word.length() == index) {
 			return from;
 		}
-		if (word.length() == 1) {
-			return delta(from, word.symbolAt(0));
+		if (word.length()-1 == index) {
+			return delta(from, word.symbolAt(index));
 		} else {
-			return delta_bar(delta(from, word.symbolAt(0)), word.substring(1));
+			return delta_bar(delta(from, word.symbolAt(index)), word, index+1);
 		}
 	}
 
