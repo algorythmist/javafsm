@@ -16,6 +16,7 @@
 		<maven-source.version>3.0.1</maven-source.version>
 		<maven-javadoc.version>3.0.1</maven-javadoc.version>
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven-gpg.version>1.6</maven-gpg.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<nexus-staging.version>1.6.8</nexus-staging.version>
 	</properties>
@@ -58,6 +59,20 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>${maven-gpg.version}</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>${nexus-staging.version}</version>
@@ -66,16 +81,6 @@
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>${maven-release-plugin.version}</version>
-				<configuration>
-					<tagNameFormat>@{project.version}</tagNameFormat>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<releaseProfiles>releases</releaseProfiles>
 				</configuration>
 			</plugin>
 		</plugins>
