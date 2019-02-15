@@ -102,6 +102,4 @@ public class SimpleMooreMachine<S, CI, CO> implements MooreMachine<S, CI, CO> {
 		return machine.builder;
 
 	}
-
-	
 }

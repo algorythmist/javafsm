@@ -4,13 +4,12 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public abstract class AbstractFiniteAutomaton<S, C> implements
-		FiniteAutomaton<C> {
+public abstract class AbstractFiniteAutomaton<S, C> implements FiniteAutomaton<C> {
 
 	protected final Alphabet<C> alphabet;
 	protected S initialState = null;
-	protected Set<S> states = new LinkedHashSet<S>();
-	protected Set<S> finalStates = new HashSet<S>();
+	protected Set<S> states = new LinkedHashSet<>();
+	protected Set<S> finalStates = new HashSet<>();
 
 	protected AbstractFiniteAutomaton(Alphabet<C> alphabet) {
 		this.alphabet = alphabet;

@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
-		NonDeterministicFiniteAutomaton<S, C> {
+public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements NonDeterministicFiniteAutomaton<S, C> {
 
-	private Map<Pair<S, C>, Set<S>> transitions = new HashMap<Pair<S, C>, Set<S>>();
+	private Map<Pair<S, C>, Set<S>> transitions = new HashMap<>();
 
 	private class PrivateNFABuilder implements NFABuilder<S, C> {
 
@@ -43,15 +42,13 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		public NonDeterministicFiniteAutomaton<S, C> build()
 				throws FABuilderException {
 			if (NFA.this.initialState == null) {
-				throw new FABuilderException("Initial state is not specficied.");
+				throw new FABuilderException("Initial state is not specifcied.");
 			}
 			if (NFA.this.finalStates.isEmpty()) {
-				throw new FABuilderException(
-						"There must be at least one final state");
+				throw new FABuilderException("There must be at least one final state");
 			}
 			return NFA.this;
 		}
-
 	}
 
 	private NFA(Alphabet<C> alphabet) {
@@ -59,11 +56,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	public void addTransition(S from, S to, C c) {
-		Set<S> states = transitions.get(new Pair<S, C>(from, c));
-		if (states == null) {
-			states = new HashSet<S>();
-			transitions.put(new Pair<S, C>(from, c), states);
-		}
+		Set<S> states = transitions.computeIfAbsent(new Pair<>(from, c), k -> new HashSet<>());
 		states.add(to);
 	}
 
@@ -74,7 +67,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 
 	@Override
 	public List<Set<S>> getPath(Word<C> word) {
-		List<Set<S>> path = new LinkedList<Set<S>>();
+		List<Set<S>> path = new LinkedList<>();
 		Set<S> states = new HashSet<S>();
 		states.add(initialState);
 		path.add(states);
@@ -86,7 +79,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	private Set<S> getNextStates(Set<S> states, C symbol) {
-		Set<S> nextStates = new HashSet<S>();
+		Set<S> nextStates = new HashSet<>();
 		for (S state : states) {
 			nextStates.addAll(getNextStates(state, symbol));
 		}
@@ -94,12 +87,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	private boolean someStateIsFinal(Set<S> states) {
-		for (S state : states) {
-			if (super.isFinal(state)) {
-				return true;
-			}
-		}
-		return false;
+		return states.stream().anyMatch(state -> isFinal(state));
 	}
 
 	/* Internal transition function */

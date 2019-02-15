@@ -4,10 +4,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
-		DeterministicFiniteAutomaton<S, C> {
+public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements DeterministicFiniteAutomaton<S, C> {
 
-	private StateTransitionTable<S, C> transitionTable = new StateTransitionTable<S, C>();
+	private StateTransitionTable<S, C> transitionTable = new StateTransitionTable<>();
 
 	private class PrivateDFABuilder implements DFABuilder<S, C> {
 
@@ -23,8 +22,7 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		}
 
 		@Override
-		public DFABuilder<S, C> addFinalState(S state)
-				throws FABuilderException {
+		public DFABuilder<S, C> addFinalState(S state) {
 			DFA.this.addFinalState(state);
 			return this;
 		}
@@ -89,7 +87,7 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 
 	@Override
 	public List<S> getPath(Word<C> word) throws InvalidTransitionException {
-		List<S> path = new LinkedList<S>();
+		List<S> path = new LinkedList<>();
 		S state = getInitialState();
 		path.add(state);
 		for (C symbol : word.asList()) {

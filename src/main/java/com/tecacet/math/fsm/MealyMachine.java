@@ -13,8 +13,8 @@ package com.tecacet.math.fsm;
  * @param <CO>
  *            Output Alphabet type
  */
-public interface MealyMachine<S, CI, CO> extends
-		DeterministicFiniteAutomaton<S, CI> {
+//TODO: Implement
+public interface MealyMachine<S, CI, CO> extends DeterministicFiniteAutomaton<S, CI> {
 
 	Alphabet<CO> getOutputAlphabet();
 

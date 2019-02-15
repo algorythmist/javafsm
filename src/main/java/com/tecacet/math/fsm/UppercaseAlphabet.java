@@ -11,14 +11,6 @@ public class UppercaseAlphabet extends Alphabet<Character> {
 			symbols.add(c);
 		}
 	}
-	
-	public void addSymbol(char c) {
-		symbols.add(c);
-	}
-
-	public boolean contains(char c) {
-		return this.contains(Character.valueOf(c));
-	}
 
 	public char[] getSymbols() {
 		char[] array = new char[symbols.size()];

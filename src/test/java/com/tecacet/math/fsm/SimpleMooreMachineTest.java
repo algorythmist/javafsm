@@ -7,10 +7,9 @@ import org.junit.Test;
 public class SimpleMooreMachineTest {
 
 	@Test
-	public void test1() throws Exception {
+	public void test1() {
 
-		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0',
-				'1' });
+		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { '0', '1' });
 
 		MooreMachineBuilder<String, Character, Character> builder = SimpleMooreMachine
 				.newMachine(alphabet, alphabet);
@@ -33,11 +32,9 @@ public class SimpleMooreMachineTest {
 				machine.getNextState("A", BasicWord.fromString("001"));
 		assertEquals("B", nextState);
 		assertEquals('1', machine.getOutput("B").charValue());
-		
 
 		assertEquals(machine.getAlphabet(), machine.getOutputAlphabet());
-		
-		
+
 	}
 
 }
