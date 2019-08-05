@@ -41,6 +41,7 @@ public class NFATest {
 		
 		List<Set<String>> path = nfa.getPath(BasicWord.fromString("010100"));
 		//TODO order is not guaranteed
+		System.out.println(path);
 		//assertEquals("[[A], [D, A], [A, B], [D, A], [A, B], [D, A], [D, E, A]]", path.toString());
 		
 		

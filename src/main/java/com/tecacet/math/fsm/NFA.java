@@ -26,15 +26,13 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		}
 
 		@Override
-		public NFABuilder<S, C> addFinalState(S state)
-				throws FABuilderException {
+		public NFABuilder<S, C> addFinalState(S state) {
 			NFA.this.addFinalState(state);
 			return this;
 		}
 
 		@Override
-		public NFABuilder<S, C> addTransition(S from, S to, C c)
-				throws FABuilderException {
+		public NFABuilder<S, C> addTransition(S from, S to, C c)  {
 			NFA.this.addTransition(from, to, c);
 			return this;
 		}
@@ -51,7 +49,6 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 			}
 			return NFA.this;
 		}
-
 	}
 
 	private NFA(Alphabet<C> alphabet) {
@@ -59,7 +56,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	public void addTransition(S from, S to, C c) {
-		Set<S> states = transitions.get(new Pair<S, C>(from, c));
+		Set<S> states = transitions.get(new Pair<>(from, c));
 		if (states == null) {
 			states = new HashSet<S>();
 			transitions.put(new Pair<S, C>(from, c), states);
@@ -68,13 +65,13 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	@Override
-	public boolean accepts(Word<C> word) throws FAException {
+	public boolean accepts(Word<C> word) {
 		return someStateIsFinal(delta_bar(initialState, word, 0));
 	}
 
 	@Override
 	public List<Set<S>> getPath(Word<C> word) {
-		List<Set<S>> path = new LinkedList<Set<S>>();
+		List<Set<S>> path = new LinkedList<>();
 		Set<S> states = new HashSet<S>();
 		states.add(initialState);
 		path.add(states);
@@ -126,7 +123,7 @@ public class NFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 
 	@Override
 	public Set<S> getNextStates(S state, C symbol) {
-		Set<S> states = transitions.get(new Pair<S, C>(state, symbol));
+		Set<S> states = transitions.get(new Pair<>(state, symbol));
 		if (states == null) {
 			states = new HashSet<S>();
 		}
