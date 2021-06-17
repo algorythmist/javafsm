@@ -13,7 +13,7 @@ import java.util.Map;
 public class SimpleMooreMachine<S, CI, CO> implements MooreMachine<S, CI, CO> {
 
 	private final Alphabet<CO> outputAlphabet;
-	private Map<S, CO> outputMap = new HashMap<S, CO>();
+	private Map<S, CO> outputMap = new HashMap<>();
 	private DeterministicFiniteAutomaton<S, CI> dfa;
 	private final DFABuilder<S, CI> delegate;
 
@@ -97,8 +97,7 @@ public class SimpleMooreMachine<S, CI, CO> implements MooreMachine<S, CI, CO> {
 	public static <S, CI, CO> MooreMachineBuilder<S, CI, CO> newMachine(
 			Alphabet<CI> inputAlphabet, Alphabet<CO> outputAlphabet) {
 		DFABuilder<S, CI> dfaBuilder = DFA.newDFA(inputAlphabet);
-		SimpleMooreMachine<S, CI, CO> machine = new SimpleMooreMachine<S, CI, CO>(
-				dfaBuilder, outputAlphabet);
+		var machine = new SimpleMooreMachine<>(dfaBuilder, outputAlphabet);
 		return machine.builder;
 
 	}

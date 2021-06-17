@@ -1,37 +1,18 @@
 package com.tecacet.math.fsm;
 
-public class UppercaseAlphabet extends Alphabet<Character> {
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class UppercaseAlphabet extends CharacterAlphabet {
 
 	/**
 	 * Create an alphabet with all lowercase characters
 	 */
 	public UppercaseAlphabet() {
 		super();
-		for (char c = 'A'; c <= 'Z'; c++) {
-			symbols.add(c);
-		}
-	}
-	
-	public void addSymbol(char c) {
-		symbols.add(c);
+		symbols = IntStream.range('A', 'Z'+1)
+				.mapToObj(i -> Character.valueOf((char)i)).collect(Collectors.toSet());
 	}
 
-	public boolean contains(char c) {
-		return this.contains(Character.valueOf(c));
-	}
-
-	public char[] getSymbols() {
-		char[] array = new char[symbols.size()];
-		int i = 0;
-		for (Character c : symbols) {
-			array[i++] = c;
-		}
-		return array;
-	}
-
-	@Override
-	public String toString() {
-		return new String(getSymbols());
-	}
 }
 

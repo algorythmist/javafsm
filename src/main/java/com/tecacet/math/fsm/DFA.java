@@ -7,7 +7,7 @@ import java.util.List;
 public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		DeterministicFiniteAutomaton<S, C> {
 
-	private StateTransitionTable<S, C> transitionTable = new StateTransitionTable<S, C>();
+	private StateTransitionTable<S, C> transitionTable = new StateTransitionTable<>();
 
 	private class PrivateDFABuilder implements DFABuilder<S, C> {
 
@@ -40,11 +40,10 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		public DeterministicFiniteAutomaton<S, C> build()
 				throws FABuilderException {
 			if (DFA.this.getInitialState() == null) {
-				throw new FABuilderException("Initial state is not specficied.");
+				throw new FABuilderException("Initial state is not specified.");
 			}
 			if (DFA.this.finalStates.isEmpty()) {
-				throw new FABuilderException(
-						"There must be at least one final state");
+				throw new FABuilderException("There must be at least one final state");
 			}
 			return DFA.this;
 		}
@@ -77,8 +76,7 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 	}
 
 	@Override
-	public S getNextState(S from, Word<C> word)
-			throws InvalidTransitionException {
+	public S getNextState(S from, Word<C> word) throws InvalidTransitionException {
 		return delta_bar(from, word,0);
 	}
 
@@ -89,7 +87,7 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 
 	@Override
 	public List<S> getPath(Word<C> word) throws InvalidTransitionException {
-		List<S> path = new LinkedList<S>();
+		List<S> path = new LinkedList<>();
 		S state = getInitialState();
 		path.add(state);
 		for (C symbol : word.asList()) {
@@ -126,17 +124,17 @@ public class DFA<S, C> extends AbstractFiniteAutomaton<S, C> implements
 		StringBuilder sb = new StringBuilder();
 		sb.append(" | ");
 		for (S state : states) {
-			sb.append(state + " | ");
+			sb.append(state).append(" | ");
 		}
 		sb.append("\n");
 
 		// create rows
 		Collection<C> symbols = alphabet.getSymbolSet();
 		for (C symbol : symbols) {
-			sb.append(symbol + "| ");
+			sb.append(symbol).append("| ");
 			for (S state : states) {
 				S nextState = getNextState(state, symbol);
-				sb.append(nextState + " | ");
+				sb.append(nextState).append(" | ");
 			}
 			sb.append("\n");
 		}

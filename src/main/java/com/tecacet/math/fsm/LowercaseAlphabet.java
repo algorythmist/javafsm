@@ -1,11 +1,13 @@
 package com.tecacet.math.fsm;
 
+import java.util.Arrays;
+
 /**
  * An <i>Alphabet</i> is a finite set of Symbols. In this implementation a
  * symbol is represented by a character and a string (or word) by a
  * java.lang.String
  */
-public class LowercaseAlphabet extends Alphabet<Character> {
+public class LowercaseAlphabet extends CharacterAlphabet {
 
 	/**
 	 * Create an alphabet with all lowercase characters
@@ -24,25 +26,4 @@ public class LowercaseAlphabet extends Alphabet<Character> {
 		}
 	}
 
-	public void addSymbol(char c) {
-		symbols.add(c);
-	}
-
-	public boolean contains(char c) {
-		return this.contains(Character.valueOf(c));
-	}
-
-	public char[] getSymbols() {
-		char[] array = new char[symbols.size()];
-		int i = 0;
-		for (Character c : symbols) {
-			array[i++] = c;
-		}
-		return array;
-	}
-
-	@Override
-	public String toString() {
-		return new String(getSymbols());
-	}
 }

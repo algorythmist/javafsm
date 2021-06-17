@@ -36,7 +36,7 @@ public class DFATest {
 	}
 
 	@Test
-	public void test2() throws FABuilderException, FAException {
+	public void test2() throws FAException {
 		DFABuilder<String, Character> builder = DFA
 				.newDFA(new LowercaseAlphabet(new char[] { 'a', 'b', 'c' }));
 		builder.setInitialState("S0");
@@ -53,8 +53,7 @@ public class DFATest {
 		builder.addFinalState("S2");
 
 		// TODO test
-		DeterministicFiniteAutomaton<String, Character> machine = builder
-				.build();
+		var machine = builder.build();
 
 		String s = ((DFA<String, Character>) machine).showTransitionDiagram();
 		System.out.println(s);
@@ -68,14 +67,14 @@ public class DFATest {
 
 	@Test
 	public void testBuilderException() throws FABuilderException {
-		DFABuilder<String, Character> builder = DFA
+		var builder = DFA
 				.newDFA(new LowercaseAlphabet(new char[] { 'a', 'b', 'c' }));
 
 		try {
 			builder.build();
 			fail();
 		} catch (FABuilderException e) {
-			assertEquals("Initial state is not specficied.", e.getMessage());
+			assertEquals("Initial state is not specified.", e.getMessage());
 		}
 
 		builder.setInitialState("S0");
