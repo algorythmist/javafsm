@@ -10,8 +10,7 @@ public class CharacterAlphabetTest {
 
 	@Test
 	public void testAlphabet() {
-		LowercaseAlphabet alphabet = new LowercaseAlphabet(new char[] { 'a',
-				'b' });
+		var alphabet = new LowercaseAlphabet(new char[] { 'a', 'b' });
 		assertEquals(2, alphabet.getSymbolSet().size());
 		assertFalse(alphabet.contains('g'));
 		assertTrue(alphabet.contains('b'));

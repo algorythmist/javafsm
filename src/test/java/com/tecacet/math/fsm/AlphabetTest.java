@@ -10,12 +10,12 @@ public class AlphabetTest {
 
 	@Test
 	public void testAlphabet() {
-		Alphabet<Character> alphabet = new Alphabet<Character>(new Character[]{'a','b'});
+		var alphabet = new Alphabet<>(new Character[]{'a','b'});
 		assertEquals(2, alphabet.getSymbolSet().size());
 		assertFalse(alphabet.contains('g'));
 		assertTrue(alphabet.contains('b'));
 		
-		Alphabet<Character> otherAlphabet = new Alphabet<Character>(new HashSet<Character>());
+		var otherAlphabet = new Alphabet<>(new HashSet<>());
 		assertTrue(otherAlphabet.getSymbolSet().isEmpty());
 	}
 

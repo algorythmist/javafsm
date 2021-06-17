@@ -7,13 +7,12 @@ import java.util.Set;
 
 /**
  * An <i>Alphabet</i> is a finite set of Symbols.
- * 
- * @param C
- *            parametrizes the set of symbols
+ *
+ * @param <C> parametrizes the set of symbols
  */
 public class Alphabet<C> {
 
-    protected Set<C> symbols = new LinkedHashSet<C>();
+    protected Set<C> symbols = new LinkedHashSet<>();
 
     protected Alphabet() {
 
@@ -29,12 +28,12 @@ public class Alphabet<C> {
 
     /**
      * Indicates if the alphabet contains a particular symbol
-     * 
-     * @param c
-     * @return
+     *
+     * @param symbol the symbol
+     * @return true or false
      */
-    public boolean contains(C c) {
-        return symbols.contains(c);
+    public boolean contains(C symbol) {
+        return symbols.contains(symbol);
     }
 
     public Set<C> getSymbolSet() {

@@ -3,52 +3,46 @@ package com.tecacet.math.fsm;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Basic alphabet-independent implementation of Word. This implementation does
  * not validate if symbols added belong to a particular alphabet.
- * 
+ *
  * @param <C>
  */
 public class BasicWord<C> implements Word<C> {
 
-	private List<C> symbols = new ArrayList<C>();
+    private List<C> symbols = new ArrayList<>();
 
-	public BasicWord(Collection<C> string) {
-		symbols.addAll(string);
-	}
+    public BasicWord(Collection<C> string) {
+        symbols.addAll(string);
+    }
 
-	public BasicWord(C[] string) {
-		for (C symbol : string) {
-			symbols.add(symbol);
-		}
-	}
+    @Override
+    public C symbolAt(int index) {
+        return symbols.get(index);
+    }
 
-	@Override
-	public C symbolAt(int index) {
-		return symbols.get(index);
-	}
+    @Override
+    public int length() {
+        return symbols.size();
+    }
 
-	@Override
-	public int length() {
-		return symbols.size();
-	}
-	
-	@Override
-	public List<C> asList() {
-		return symbols;
-	}
+    @Override
+    public List<C> asList() {
+        return symbols;
+    }
 
-	public static Word<Character> fromString(String s) {
-		List<Character> ac = new ArrayList<Character>();
-		for (int i = 0; i < s.length(); i++) {
-			ac.add(s.charAt(i));
-		}
-		return new BasicWord<Character>(ac);
-	}
+    public static Word<Character> fromString(String s) {
+        var ac =
+                IntStream.range(0, s.length()).mapToObj(s::charAt).collect(Collectors.toList());
+        return new BasicWord<>(ac);
+    }
 
-	@Override
-	public String toString() {
-		return String.valueOf(symbols.toArray(new Character[symbols.size()]));
-	}
+    @Override
+    public String toString() {
+        return symbols.toString();
+    }
 }
