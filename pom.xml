@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tecacet</groupId>
 	<artifactId>javafsm</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<name>Java FSM</name>
 	<inceptionYear>2012</inceptionYear>
 	<description>Finite State Machine in Java</description>
